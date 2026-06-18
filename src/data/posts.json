@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "velocity-decay",
+    "title": "Why Your Sprints Are Getting Slower",
+    "date": "2025-03-15",
+    "summary": "It's not technical debt. It's reification — abstractions that have drifted from their empirical anchors and now tax every change.",
+    "tags": ["velocity", "architecture"],
+    "content": "Every team starts fast. The first sprint ships in days. The second in a week. By sprint ten, the same team — same people, same skills, same tools — takes three weeks to ship what used to take three days.\n\nThe standard diagnosis is 'technical debt.' The standard prescription is 'refactoring.' Both are wrong — not because they are false, but because they are imprecise. They name the symptom and prescribe a ritual without identifying the disease.\n\nThe disease is reification. Somewhere between sprint one and sprint ten, the team introduced abstractions that have no perceivable referent in the running software. A CustomerAggregate that is neither customer nor aggregate. A BillingDomain that corresponds to no boundary a user can observe. A UserContext that turns out to be neither user nor context.\n\nEach of these ghosts was introduced with good intentions — 'separation of concerns,' 'clean architecture,' 'domain-driven design.' But intentions do not write software. Behavior does. And behavior is what can be observed.\n\nThe fix is not a rewrite. The fix is a discipline: for every concept in the codebase, ask — what can be perceived that corresponds to this? If you cannot answer, you have found a ghost. Remove it. Replace it with the simplest expression of the real behavior it was pretending to represent.\n\nThis is not a one-time cleanup. It is a practice. Every sprint, every PR, every design discussion: ground everything in what can be seen."
+  },
+  {
+    "slug": "ceremony-vs-software",
+    "title": "Ceremony Is Not Software",
+    "date": "2025-02-28",
+    "summary": "Page objects, fluent DSLs, and auto-wiring frameworks feel productive. But if you can strip them and the program still works — they were never software.",
+    "tags": ["testing", "philosophy"],
+    "content": "Take any behavior you want to verify. Write the verification twice.\n\nVersion A: directly, using the underlying tool. page.click, page.fill, expect(page.locator(...)).toBeVisible().\n\nVersion B: through whatever wrapper infrastructure you currently use. loginPage.clickLoginButton(), dashboardPage.expectGreeting(...), with all the supporting files in place.\n\nNow change the behavior. Add a captcha to the login flow. Or change the success condition. Or handle a new error state.\n\nIf Version A is changed with one edit and Version B requires edits across multiple files — that is the answer. Version B is not soft. The wrappers are not paying their rent. They are taxing every change with bureaucratic processing that produces no behavioral value.\n\nA small utility function is a name for a pattern. A framework is a pattern you cannot escape.\n\nThe test is simple. Strip it away. Does the remaining program still do what it needs to do, expressed clearly? If yes, what you stripped was ceremony.\n\nWrite necessary and sufficient code. Extract the commonalities that are real software — they earn their place by the cost they save under change. Reject the wrappers that are not real software — they earn nothing, and they tax every change with ceremony that produces no behavior."
+  },
+  {
+    "slug": "necessary-and-sufficient",
+    "title": "The Necessary and Sufficient Test",
+    "date": "2025-02-10",
+    "summary": "A simple function that captures real commonality beats twelve files of declarative machinery. Here's how to tell the difference.",
+    "tags": ["design", "pragmatism"],
+    "content": "If your test suite has a hundred tests that all need to log in first, the login flow should not be re-implemented a hundred times. That is just DRY — a real principle, grounded in a real concern about the cost of change.\n\nSo a function:\n\nasync function logIn(page, { username, password }) {\n  await page.goto('/login');\n  await page.fill('#username', username);\n  await page.fill('#password', password);\n  await page.click('#login-button');\n  await page.waitForURL('/dashboard');\n}\n\nis necessary and sufficient. It captures a real commonality. It is grounded. It is the smallest expression of the real software that needs to exist.\n\nWhat is not necessary and sufficient is wrapping this function in a LoginPage class, registering that class in a PageRegistry, instantiating it through a PageFactory, exposing its methods through a fluent chain, and adding an IPage interface for the type system to enforce. None of that machinery touches the actual login behavior. All of it is presentation, dressed up as architecture.\n\nAsk, of every helper, every wrapper, every utility:\n\nIs this necessary? Could the program be expressed clearly without it?\n\nIs this sufficient? Does its presence add behavioral value, or only readability?\n\nCan it be stripped? If you removed it tomorrow, would the program still work, and would the remaining expression be clear?\n\nThese are not aesthetic questions. They are engineering questions."
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "name": "empirical-software",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run src/dev.ts",
+    "build": "bun run scripts/build.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
