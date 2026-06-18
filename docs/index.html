@@ -41,10 +41,94 @@
       .grid { grid-template-columns: 1fr; }
       .nav { flex-wrap: wrap; gap: 0.6rem; }
     }
+  
+
+    .app {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .main {
+      flex: 1;
+      max-width: var(--max-w);
+      width: 100%;
+      margin: 0 auto;
+      padding: calc(var(--space) * 2) var(--space);
+    }
+  
+
+    .nav {
+      display: flex;
+      gap: 1rem;
+      padding: var(--space);
+      border-bottom: 1px solid var(--border);
+      max-width: var(--max-w);
+      width: 100%;
+      margin: 0 auto;
+    }
+    .nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav a:hover, .nav a.active {
+      color: var(--fg);
+    }
+  
+
+    .link {
+      color: var(--fg);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  
+
+    .hero {
+      padding: calc(var(--space) * 3) 0;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space);
+    }
+    .hero .text {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 560px;
+    }
+    .hero .btn {
+      margin-top: calc(var(--space) * 1.5);
+    }
+  
+
+    .text {
+      color: var(--muted);
+      margin-bottom: var(--space);
+    }
+  
+
+    .btn {
+      display: inline-block;
+      padding: 0.6rem 1.4rem;
+      background: var(--fg);
+      color: var(--bg);
+      border: none;
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.8; }
+  
+
   </style>
 </head>
 <body>
-  <div id="app"></div>
-  <script type="module" src="./main.fwz6rgev.js"></script>
+  <div id="app"><div class="app"><nav class="nav"><a href="#" class="link" data-page="home">Home</a><a href="#" class="link" data-page="services">Services</a><a href="#" class="link" data-page="about">About</a><a href="#" class="link" data-page="blog">Blog</a><a href="#" class="link" data-page="contact">Contact</a></nav><main class="main"><section class="section"><div class="container"><div class="hero"><h1>Empirical Software</h1><p class="text">We build software that keeps delivering — sprint after sprint, year after year.</p><p class="text">No mire. No slowdown. Just sustained velocity.</p><button class="btn">See how →</button></div></div></section></main></div></div>
+  <script type="module" src="./main.eygt9x1h.js"></script>
 </body>
 </html>
